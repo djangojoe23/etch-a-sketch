@@ -1,4 +1,5 @@
 
+
 window.onload = function() {
     let container = document.createElement("div");
     container.setAttribute('id', 'container');
@@ -14,6 +15,9 @@ window.onload = function() {
             cell = document.createElement("div");
             cell.setAttribute('class', 'cell');
             row.appendChild(cell);
+            cell.addEventListener("mouseover", function() {
+                this.style.backgroundColor = "orange";
+            })
         }
     }
 }
