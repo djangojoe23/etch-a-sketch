@@ -1,6 +1,9 @@
 window.onload = function() {
-    let gridSize = 16;
+
+    const container = document.querySelector('#container');
+
     document.querySelector('#changeGridButton').addEventListener('click', function(){
+        let gridSize = 16;
         do{
             gridSize = prompt("How many squares per side of the grid would you like? (100 MAX)")
             if(gridSize === null){
@@ -14,27 +17,28 @@ window.onload = function() {
             }
         } while(isNaN(gridSize) || gridSize > 100 || gridSize <= 0);
         
-        console.log(gridSize)
-
+        DrawGrid(gridSize);
     })
 
-    let container = document.createElement("div");
-    container.setAttribute('id', 'container');
-    document.body.appendChild(container);
+    function DrawGrid(gridSize){   
+        container.innerHTML = '';
 
-    let row = null;
-    let cell = null;
-    for (let i=0; i<gridSize; i++){
-        row = document.createElement("div");
-        row.setAttribute('class', 'row');
-        container.appendChild(row);
-        for (let j=0; j<gridSize; j++){
-            cell = document.createElement("div");
-            cell.setAttribute('class', 'cell');
-            row.appendChild(cell);
-            cell.addEventListener("mouseover", function() {
-                this.style.backgroundColor = "orange";
-            })
+        let row = null;
+        let cell = null;
+        for (let i=0; i<gridSize; i++){
+            row = document.createElement("div");
+            row.setAttribute('class', 'row');
+            row.style.height = `${100/gridSize}%`
+            container.appendChild(row);
+            for (let j=0; j<gridSize; j++){
+                cell = document.createElement("div");
+                cell.setAttribute('class', 'cell');
+                row.appendChild(cell);
+                cell.addEventListener("mouseover", function() {
+                    this.style.backgroundColor = "orange";
+                })
+            }
         }
     }
+    
 }
